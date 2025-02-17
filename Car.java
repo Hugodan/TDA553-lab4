@@ -36,6 +36,10 @@ public abstract class Car implements Movable{
         return currentSpeed;
     }
 
+    private void stop(){
+        currentSpeed = 0;
+    }
+
     public Color getColor(){
         return color;
     }
@@ -97,6 +101,9 @@ public abstract class Car implements Movable{
     public void brake(double amount){
         if (amount >= 0 && amount <= 1){
             decrementSpeed(amount);
+            if(getCurrentSpeed() < 0){
+                stop();
+            }
         }
     }
 
