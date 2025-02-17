@@ -14,6 +14,12 @@ public class DrawPanel extends JPanel{
     // To keep track of a single car's position
     Point volvoPoint = new Point();
 
+    BufferedImage saabImage;
+    Point saabPoint = new Point(0,100);
+
+    BufferedImage scaniaImage;
+    Point scaniaPoint = new Point(0,200);
+
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
@@ -51,6 +57,8 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null); 
+        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
 }
