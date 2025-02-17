@@ -4,15 +4,28 @@ public class RepairShop <T extends Car> implements CarCollection<T> {
 
     private ArrayList<T> parkedCars;
     private int capacity;
+    protected double posX;
+    protected double posY;
 
-    public RepairShop(int capacity) {
+
+    public RepairShop(int capacity,double posX, double posY) {
         parkedCars = new ArrayList<>();
         this.capacity = capacity;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     @Override
     public ArrayList<T> getLoadedCars(){
         return parkedCars;
+    }
+
+    public double getPosX(){
+        return posX;
+    }
+
+    public double getPosY(){
+        return posY;
     }
 
 

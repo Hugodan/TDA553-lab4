@@ -23,6 +23,8 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
+    private final RepairShop<Volvo240> volvoRepairShop = new RepairShop<>(5,0,400);
+    
     //methods:
 
     public static void main(String[] args) {
@@ -63,6 +65,10 @@ public class CarController {
                 if(x < 0 || x > 800 || y < 0 || y > 560){
                     car.turnLeft();
                     car.turnLeft();
+                }
+                if(car instanceof Volvo240 && checkInShop(car.getPosX(), car.getPosY(), volvoRepairShop.getPosX(), volvoRepairShop.getPosY())){
+                    volvoRepairShop.loadCar((Volvo240)car);
+                    cars.remove(car);
                 }
                 frame.drawPanel.moveit(count,x, y);
                 // repaint() calls the paintComponent method of the panel
@@ -138,4 +144,8 @@ public class CarController {
             car.stopEngine();
         }
     } 
+
+    boolean checkInShop(double posX, double posY, double shopX, double shopY){
+        return shopX <= posX && shopX + 101 >= posX &&  shopY <= posY && shopY + 96 >= posY;
+    }
 }

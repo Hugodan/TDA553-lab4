@@ -30,7 +30,7 @@ public class DrawPanel extends JPanel{
 
     private final List<CarImage> carImages = new ArrayList<>();
     private BufferedImage volvoWorkshopImage;
-    private final Point volvoWorkshopPoint = new Point(300, 300);
+    private final Point volvoWorkshopPoint = new Point(0, 400);
 
 
 

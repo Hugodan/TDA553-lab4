@@ -5,7 +5,7 @@ import java.util.Stack;
 public class RepairShopTest {
     @Test
     public  void testRepairShopLoad() {
-        RepairShop<Volvo240> shop = new RepairShop<>(4);
+        RepairShop<Volvo240> shop = new RepairShop<>(4,0,0);
         Volvo240 car1 = new Volvo240();
         Stack<Car> testqueue = new Stack<>();
         shop.loadCar(car1);
@@ -17,7 +17,7 @@ public class RepairShopTest {
     }
     @Test
     public  void testRepairShopUnLoad() {
-        RepairShop<Volvo240> shop = new RepairShop<>(4);
+        RepairShop<Volvo240> shop = new RepairShop<>(4,0,0);
         Volvo240 car1 = new Volvo240();
         Stack<Car> testqueue = new Stack<>();
         shop.loadCar(car1);
@@ -30,7 +30,7 @@ public class RepairShopTest {
 
     @Test
     public  void testRepairShopCapacity() {
-        RepairShop<Volvo240> shop = new RepairShop<>(2);
+        RepairShop<Volvo240> shop = new RepairShop<>(2,0,0);
         Volvo240 car1 = new Volvo240();
         Volvo240 car2 = new Volvo240();
         Volvo240 car3 = new Volvo240(); 
