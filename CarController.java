@@ -33,15 +33,15 @@ public class CarController {
         Saab95 saab = new Saab95();
         Scania scania = new Scania();
 
-        // Set initial positions
-        volvo.setPos(0, 0);
-        saab.setPos(0, 100);
-        scania.setPos(0, 200);
+        //Set initial positions
+        volvo.setPos(0,0);
+        saab.setPos(0,100);
+        scania.setPos(0,200);
 
         cc.cars.add(volvo);
         cc.cars.add(saab);
-        cc.cars.add(scania);
-        
+        cc.cars.add(scania );
+
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -88,4 +88,54 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    void turboOn() {
+        for (Car car : cars
+                ) {
+            if(car instanceof Saab95){
+                ((Saab95)car).setTurboOn();
+            }
+        }
+    }
+
+    void turboOff() {
+        for (Car car : cars
+                ) {
+            if(car instanceof Saab95){
+                ((Saab95)car).setTurboOff();
+            }
+        }
+    }    
+
+    void raiseFlatbed(float amount) {
+        for (Car car : cars
+                ) {
+            if(car instanceof Scania){
+                ((Scania)car).raiseAngle(amount);
+            }
+        }
+    }    
+
+    void lowerFlatbed(float amount) {
+        for (Car car : cars
+                ) {
+            if(car instanceof Scania){
+                ((Scania)car).lowerAngle(amount);
+            }
+        }
+    }        
+
+    void startEngine() {
+        for (Car car : cars
+                ) {
+            car.startEngine();
+        }
+    } 
+
+    void stopEngine() {
+        for (Car car : cars
+                ) {
+            car.stopEngine();
+        }
+    } 
 }

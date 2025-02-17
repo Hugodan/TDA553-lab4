@@ -12,6 +12,7 @@ public abstract class Car implements Movable{
     private double posY;
     private int direction;
     private boolean heavyVehicle;
+    protected boolean engineOn;
     
     public Car(int doors, Color carColor, int power, String model){
         nrDoors = doors;
@@ -22,7 +23,8 @@ public abstract class Car implements Movable{
         posY = 0;
         direction = 0;
         heavyVehicle = false;
-        stopEngine();
+        engineOn = false;
+        
     }
     
     public int getNrDoors(){
@@ -70,11 +72,11 @@ public abstract class Car implements Movable{
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1;
+	    engineOn = true;
     }
 
     public void stopEngine(){
-	    currentSpeed = 0;
+	    engineOn = false;
     }
 
     protected double speedFactor() {
@@ -90,7 +92,7 @@ public abstract class Car implements Movable{
     }
 
     public void gas(double amount){
-        if (amount >= 0 && amount <= 1){
+        if (amount >= 0 && amount <= 1 && engineOn == true){
             if(getCurrentSpeed() + speedFactor() * amount <= getEnginePower()){
                 incrementSpeed(amount);
             }
