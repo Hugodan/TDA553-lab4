@@ -58,6 +58,8 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             int count = 0;
+            ArrayList<Car> carsToRemove = new ArrayList<>();
+            ArrayList<Integer> idsToRemove = new ArrayList<>();
             for (Car car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getPosX());
@@ -68,13 +70,19 @@ public class CarController {
                 }
                 if(car instanceof Volvo240 && checkInShop(car.getPosX(), car.getPosY(), volvoRepairShop.getPosX(), volvoRepairShop.getPosY())){
                     volvoRepairShop.loadCar((Volvo240)car);
-                    cars.remove(car);
+                    carsToRemove.add(car);
+                    idsToRemove.add(count);
+                    
                 }
                 frame.drawPanel.moveit(count,x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
                 count++;
             }
+            for(Integer i : idsToRemove){
+                frame.drawPanel.removeCar(i);
+            }
+            cars.removeAll(carsToRemove);
         }
     }
 
