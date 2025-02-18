@@ -64,7 +64,7 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getPosX());
                 int y = (int) Math.round(car.getPosY());
-                if(x < 0 || x > 740 || y < 0 || y > 460){
+                if(x < 0 || x > 700 || y < 0 || y > 500){
                     car.turnLeft();
                     car.turnLeft();
                 }
