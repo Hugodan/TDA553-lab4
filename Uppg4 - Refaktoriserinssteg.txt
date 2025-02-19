@@ -2,3 +2,5 @@
 2. Separera Carview i en UI klass och en eventhanteringsklass.
 3. Ändrar logiken I CarController så att den refererar till eventhanteraren, inte dirkt till UI-Elementen.
 4. Separera FlatBedCar i Flatbed och FlatBedCar.
+
+1 och 2 går att utföra paralellt. dessa måste färdigställas innan 3. 4 går att göra paralellt med alla andra steg

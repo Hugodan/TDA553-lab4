@@ -4,7 +4,9 @@ implementerar movable vilket är en abstraktion som gör att andra framtida ford
 använda movable Car-klassen kapslar in grundläggande funktionaliteter, vilket resulterar i ökad cohesion. 
 Repair-shop har hög cohesion eftersom den har en snävt scope. 
 
-Repairshop är direkt beroende av Volvo240, vilket strider mot DIP eftersom moduler på högre nivå inte skall vara 
-beroende av implementationer på lägre nivå. Car-controller har låg cohesion och eftersom den har flera skillda 
+CarController är hårdkodad att vara direkt beroende av en repairshop för Volvo240, vilket strider mot DIP eftersom 
+moduler på högre nivå inte skall vara beroende av implementationer på lägre nivå. 
+Car-controller har låg cohesion eftersom den har flera skillda 
 ansvarsområden, den ansvarar bland annat för att kontrollera bilen, repairShops interaktioner med olika bilar, 
 och har möjligheter att uppdatera UI element. 
+
