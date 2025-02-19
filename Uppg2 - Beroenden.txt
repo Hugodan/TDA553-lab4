@@ -1,0 +1,10 @@
+Olika typer av bilar behöver nödvändigtvis vara beroende av car-classen, Volvo240, Saab95 och FlatBedCar ärver från 
+Car så att vi kan använda funktionalitet i car classen i dessa subklasser. Ett annat nödvändigt beroende är att car
+implementerar movable vilket är en abstraktion som gör att andra framtida fordonstyper, ex motorcycklar också kan 
+använda movable Car-klassen kapslar in grundläggande funktionaliteter, vilket resulterar i ökad cohesion. 
+Repair-shop har hög cohesion eftersom den har en snävt scope. 
+
+Repairshop är direkt beroende av Volvo240, vilket strider mot DIP eftersom moduler på högre nivå inte skall vara 
+beroende av implementationer på lägre nivå. Car-controller har låg cohesion och eftersom den har flera skillda 
+ansvarsområden, den ansvarar bland annat för att kontrollera bilen, repairShops interaktioner med olika bilar, 
+och har möjligheter att uppdatera UI element. 
