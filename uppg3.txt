@@ -1,5 +1,5 @@
-CarController har för många ansvarsområden, den hanterar bilarns logik, repairShops logik och har koppling 
+CarController har för många ansvarsområden, den hanterar bilarnas logik, repairShops logik och har koppling 
 till UI-element, vilket strider mot SRP och SoC, vi bör tillämpa decomposition på CarController klassen.
 CarView strider även mot SRP eftersom den både hanterar UI och eventlogik, eventlogiken borde hanteras av 
-en separat klass. Car transport bör delas upp i transportlogik och lagrande av bilar för att enklare kunnna 
+en separat klass. Flatbedcar bör delas upp i transportlogik och lagrande av bilar för att enklare kunnna 
 modifiera någon av funktionerna i framtiden utan att de har inbördes påverkan. 
