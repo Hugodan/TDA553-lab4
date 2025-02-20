@@ -46,7 +46,7 @@ public class CarController {
 
 
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        cc.frame = new CarView("CarSim gigidogidi", cc);
 
         // Start the timer
         cc.timer.start();
