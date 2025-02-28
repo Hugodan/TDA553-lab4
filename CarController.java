@@ -48,6 +48,8 @@ public class CarController {
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim gigidogidi", cc);
 
+        new CarEventHandler(cc, cc.frame);
+
         // Start the timer
         cc.timer.start();
     }
