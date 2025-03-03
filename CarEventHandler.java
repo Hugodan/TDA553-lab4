@@ -4,11 +4,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class CarEventHandler {
-    private CarController carC;
+    private Controller con;
     private CarView carUI;
 
-    public CarEventHandler(CarController carC, CarView carUI) {
-        this.carC = carC;
+    public CarEventHandler(Controller c, CarView carUI) {
+        this.con = con;
         this.carUI = carUI;
         attachListeners();
     }
@@ -23,56 +23,56 @@ public class CarEventHandler {
         carUI.getGasButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(carUI.getGasAmount());
+                con.gas(carUI.getGasAmount());
             }
         });
 
         carUI.getBrakeButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(carUI.getGasAmount());
+                con.brake(carUI.getGasAmount());
             }
         });
 
         carUI.getTurboOnButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
+                con.turboOn();
             }
         });
 
         carUI.getTurboOffButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.turboOff();
+                con.turboOff();
             }
         });
 
         carUI.getLiftBedButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.raiseFlatbed(70);
+                con.raiseFlatbed(70);
             }
         });
 
         carUI.getLowerBedButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.lowerFlatbed(0);
+                con.lowerFlatbed(0);
             }
         });
 
         carUI.getStartButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
+                con.startEngine();
             }
         });
 
         carUI.getStopButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();
+                con.stopEngine();
             }
         });
     }
