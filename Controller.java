@@ -3,125 +3,90 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Controller extends CarEventHandler {
-
-    private final CarController cc;
-    private final CarRepairShopController crsc;
+public class Controller {
+    private final CarController carController;
+    private final CarRepairShopController repairShopController;
     private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    private Timer timer;
+    private CarView frame;
 
-    CarView frame;
-    public Controller(Controller con, CarView carUI){
-        super(con, carUI);
-
+    public Controller(CarController carController, CarRepairShopController repairShopController, CarView frame) {
+        this.carController = carController;
+        this.repairShopController = repairShopController;
+        this.frame = frame;
         this.timer = new Timer(delay, new TimerListener());
+
+        // Start simulation
+        timer.start();
+    }
+
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            ArrayList<Car> carsToRemove = new ArrayList<>();
+            ArrayList<Integer> idsToRemove = new ArrayList<>();
+    
+            int index = 0; // Track car index
+            for (Car car : carController.getCars()) {
+                car.move();
+    
+                int x = (int) Math.round(car.getPosX());
+                int y = (int) Math.round(car.getPosY());
+    
+                if (x < 0 || x > frame.getWidth() - 100) { 
+                    car.turnLeft();
+                    car.turnLeft(); 
+                }
+                if (y < 0 || y > frame.getHeight() - 200) {
+                    car.turnLeft();
+                    car.turnLeft();
+                }
+    
+            
+                if (repairShopController.checkInShop(car) && car instanceof Volvo240) {
+                    repairShopController.loadCar((Volvo240) car);
+                    carsToRemove.add(car);
+                    idsToRemove.add(index);
+                }
+    
+                frame.drawPanel.moveit(index, x, y);
+                frame.drawPanel.repaint();
+    
+                index++; 
+                }
+
+                for(Integer i : idsToRemove){
+                    frame.drawPanel.removeCar(i);
+    
+                carController.getCars().removeAll(carsToRemove);
+            
+            }
+        }
+    }
+    
+    
         
     
-        // Attach event handlers to buttons
-        new CarEventHandler(this, frame);}
-        
+
     public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-        CarRepairShopController crsc = new CarRepairShopController(5,0,400);
+        CarController carController = new CarController();
+        CarRepairShopController repairShopController = new CarRepairShopController(5, 0, 400);
+        CarView frame = new CarView("Car Sim 1.0");
+        new Controller(carController, repairShopController, frame);
+       
+
         
-        Controller con = new Controller();
-        CarView carUI = new CarView("Car sim  1.0", con);
-        
+        new CarEventHandler(carController, frame);
 
         Volvo240 volvo = new Volvo240();
         Saab95 saab = new Saab95();
         Scania scania = new Scania();
 
-        //Set initial positions
-        volvo.setPos(0,0);
-        saab.setPos(0,100);
-        scania.setPos(0,200);
+        volvo.setPos(0, 0);
+        saab.setPos(0, 100);
+        scania.setPos(0, 200);
 
-        cc.cars.add(volvo);
-        cc.cars.add(saab);
-        cc.cars.add(scania );
-
-        Controller con = new Controller();
-        con.frame = new CarView("CarSim 1.0", con);  // Ensure it's initialized
-
-
-        // Start a new view and send a reference of self
-       
-    
-        new CarEventHandler();
-
-        // Start the timer
-        con.timer.start();
-    }   
-
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            int count = 0;
-            ArrayList<Car> carsToRemove = new ArrayList<>();
-            ArrayList<Integer> idsToRemove = new ArrayList<>();
-            for (Car car : cc.cars) {
-                car.move();
-                int x = (int) Math.round(car.getPosX());
-                int y = (int) Math.round(car.getPosY());
-                if(x < 0 || x > 700 || y < 0 || y > 500){
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-                if(car instanceof Volvo240 && crsc.checkInShop(car.getPosX(), car.getPosY(), crsc.volvoRepairShop.getPosX(), crsc.volvoRepairShop.getPosY())){
-                    crsc.volvoRepairShop.loadCar((Volvo240)car);
-                    carsToRemove.add(car);
-                    idsToRemove.add(count);
-                    
-                }
-                frame.drawPanel.moveit(count,x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-                count++;
-            }
-            for(Integer i : idsToRemove){
-                frame.drawPanel.removeCar(i);
-            }
-            cc.cars.removeAll(carsToRemove);
-        }
+        carController.addCar(volvo);
+        carController.addCar(saab);
+        carController.addCar(scania);
     }
-
-    public void gas(int amount) {
-        cc.gas(amount);
-    }
-    
-    public void brake(int amount) {
-        cc.brake(amount);
-    }
-    
-    public void turboOn() {
-        cc.turboOn();
-    }
-    
-    public void turboOff() {
-        cc.turboOff();
-    }
-    
-    public void raiseFlatbed(float amount) {
-        cc.raiseFlatbed(amount);
-    }
-    
-    public void lowerFlatbed(float amount) {
-        cc.lowerFlatbed(amount);
-    }
-    
-    public void startEngine() {
-        cc.startEngine();
-    }
-    
-    public void stopEngine() {
-        cc.stopEngine();
-    }
-    
-
-    
-    
-
-
+}
