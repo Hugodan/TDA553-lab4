@@ -13,13 +13,23 @@ public class Controller extends CarEventHandler {
     private Timer timer = new Timer(delay, new TimerListener());
 
     CarView frame;
+    public Controller(Controller con, CarView carUI){
+        super(con, carUI);
 
-  
+        this.timer = new Timer(delay, new TimerListener());
+        
+    
+        // Attach event handlers to buttons
+        new CarEventHandler(this, frame);}
+        
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
         CarRepairShopController crsc = new CarRepairShopController(5,0,400);
-        Controller con = new Controller(cc, crsc);
+        
+        Controller con = new Controller();
+        CarView carUI = new CarView("Car sim  1.0", con);
+        
 
         Volvo240 volvo = new Volvo240();
         Saab95 saab = new Saab95();
@@ -77,5 +87,41 @@ public class Controller extends CarEventHandler {
             cc.cars.removeAll(carsToRemove);
         }
     }
+
+    public void gas(int amount) {
+        cc.gas(amount);
+    }
     
-}
+    public void brake(int amount) {
+        cc.brake(amount);
+    }
+    
+    public void turboOn() {
+        cc.turboOn();
+    }
+    
+    public void turboOff() {
+        cc.turboOff();
+    }
+    
+    public void raiseFlatbed(float amount) {
+        cc.raiseFlatbed(amount);
+    }
+    
+    public void lowerFlatbed(float amount) {
+        cc.lowerFlatbed(amount);
+    }
+    
+    public void startEngine() {
+        cc.startEngine();
+    }
+    
+    public void stopEngine() {
+        cc.stopEngine();
+    }
+    
+
+    
+    
+
+
