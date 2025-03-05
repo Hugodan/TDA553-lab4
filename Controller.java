@@ -104,7 +104,7 @@ public class Controller {
         CarController carController = new CarController();
         
         RepairShop<Volvo240> volvoShop = new RepairShop<>(5, 0, 400);
-        CarRepairShopController<Volvo240> repairShopController = new CarRepairShopController<>(volvoShop);
+        CarRepairShopController repairShopController = new CarRepairShopController(volvoShop);
 
         
         CarView frame = new CarView("Car Sim 1.0");

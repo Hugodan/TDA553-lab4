@@ -6,6 +6,7 @@ public class CarRepairShopController {
     }
 
 
+
     public boolean checkInShop(Car car) {
         double posX = car.getPosX();
         double posY = car.getPosY();
@@ -19,4 +20,3 @@ public class CarRepairShopController {
         volvoRepairShop.loadCar(car);
     }
 }
-
