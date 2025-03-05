@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,47 +13,55 @@ public class DrawPanel extends JPanel implements Observer {
         Car car;
         Point position;
         CarImage(String imagePath, Car car) {
-            try {
-                System.out.println("Loading image from: " + imagePath);
-                image = ImageIO.read(getClass().getResource(imagePath));
-                if(image == null) {
-                    System.out.println(" Image not found at: " + imagePath);
-                } else {
-                    System.out.println(" Image loaded successfully: " + imagePath);
-                }
-                position = new Point((int) car.getPosX(), (int) car.getPosY());
-                this.car = car;
-            } catch (IOException | NullPointerException e) {
-                System.err.println("Error loading image: " + imagePath);
-                e.printStackTrace();
+        try {
+            File file = new File(imagePath);
+            System.out.println("Absolute path: " + file.getAbsolutePath());
+            System.out.println("File exists: " + file.exists());
+            image = ImageIO.read(file);
+            if (image == null) {
+                System.out.println("ImageIO.read returned null for: " + imagePath);
+            } else {
+                System.out.println("Image loaded successfully: " + imagePath);
             }
+            position = new Point((int) car.getPosX(), (int) car.getPosY());
+            this.car = car;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+    }
+
     private final CarController carController;
     private final List<CarImage> carImages = new ArrayList<>();
     private BufferedImage volvoWorkshopImage;
     private final Point volvoWorkshopPoint = new Point(0, 400);
+    
     public DrawPanel(CarController carController, int x, int y) {
         this.carController = carController;
         setDoubleBuffered(true);
         setPreferredSize(new Dimension(x, y));
         setBackground(Color.green);
         carController.addObserver(this);
-        for (Car car : carController.getCars()) {
-            String imagePath = getCarImagePath(car);
-            carImages.add(new CarImage(imagePath, car));
-        }
+        refreshCarImages();
         try {
             volvoWorkshopImage = ImageIO.read(getClass().getResource("/pics/VolvoBrand.jpg"));
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }
+
     private String getCarImagePath(Car car) {
-        if (car instanceof Volvo240) return "/pics/Volvo240.jpg";
-        if (car instanceof Saab95) return "/pics/Saab95.jpg";
-        if (car instanceof Scania) return "/pics/Scania.jpg";
+        if (car instanceof Volvo240) return "pics/Volvo240.jpg";
+        if (car instanceof Saab95) return "pics/Saab95.jpg";
+        if (car instanceof Scania) return "pics/Scania.jpg";
         return "/pics/default.jpg";
+    }
+    public void refreshCarImages() {
+        carImages.clear();
+        for (Car car : carController.getCars()) {
+            String imagePath = getCarImagePath(car);
+            carImages.add(new CarImage(imagePath, car));
+        }
     }
     public void removeCar(Car car) {
         carImages.removeIf(carImage -> carImage.car.equals(car));
@@ -60,6 +69,7 @@ public class DrawPanel extends JPanel implements Observer {
     }
     @Override
     public void update() {
+        refreshCarImages();
         repaint();
     }
     @Override
