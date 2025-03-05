@@ -16,5 +16,6 @@ public class CarRepairShopController {
 
     public void loadCar(Volvo240 car) {
         volvoRepairShop.loadCar(car);
-    }
+    
+}
 }
