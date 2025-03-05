@@ -1,14 +1,18 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarController {
     private final ArrayList<Car> cars = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
 
     public void addCar(Car car) {
         cars.add(car);
+        notifyObservers();
     }
 
     public void removeCar(Car car) {
         cars.remove(car);
+        notifyObservers();
     }
 
     public ArrayList<Car> getCars() {
@@ -71,5 +75,23 @@ public class CarController {
         for (Car car : cars) {
             car.stopEngine();
         }
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    protected void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+    public void moveCars() {
+        for (Car car : cars) {
+            car.move();
+        }
+        System.out.println("Cars moved and observers notified.");
+        notifyObservers();
     }
 }

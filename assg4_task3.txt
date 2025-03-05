@@ -1,0 +1,24 @@
+Observer:
+    Redan använder:
+        - 
+    Bör använda
+        - Skapa en observer klass som drawpanel kan implementera.
+        Det löser MVC problematik då controller direkt uppdaterar view
+
+Factory Method:
+    Redan använder:
+        - Nej
+    Bör använda
+        - Bör användas för att skapa bilar då vi i nuläget skapar specifika bilar direkt i main()
+
+State:
+    Redan använder:
+        - Nej
+    Bör använda
+        - Det bör användas för olika states av motorn. I nuläget används en boolean för motorns av eller på läge. 
+
+Composite:
+    Redan använder:
+        - Ja genom carcollection som används av car transport. Detta ger oss möjlighet att hantera enskilda bilar och kollektioner av bilar(biltransporter) på samma sätt
+    Bör använda
+        - 

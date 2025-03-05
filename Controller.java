@@ -56,9 +56,7 @@ public class Controller {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ArrayList<Car> carsToRemove = new ArrayList<>();
-            ArrayList<Integer> idsToRemove = new ArrayList<>();
     
-            int index = 0; // Track car index
             for (Car car : carController.getCars()) {
                 car.move();
     
@@ -78,23 +76,19 @@ public class Controller {
                 if (repairShopController.checkInShop(car) && car instanceof Volvo240) {
                     repairShopController.loadCar((Volvo240) car);
                     carsToRemove.add(car);
-                    idsToRemove.add(index);
                 }
     
-                frame.drawPanel.moveit(index, x, y);
-                frame.drawPanel.repaint();
-    
-                index++; 
                 }
 
-                for(Integer i : idsToRemove){
-                    frame.drawPanel.removeCar(i);
-    
+                for(Car car : carsToRemove){
+                    frame.drawPanel.removeCar(car);
+                }
                 carController.getCars().removeAll(carsToRemove);
+                carController.notifyObservers();
             
             }
         }
-    }
+
     
     
         
@@ -103,7 +97,7 @@ public class Controller {
     public static void main(String[] args) {
         CarController carController = new CarController();
         CarRepairShopController repairShopController = new CarRepairShopController(5, 0, 400);
-        CarView frame = new CarView("Car Sim 1.0");
+        CarView frame = new CarView("Car Sim 1.0", carController);
         Controller controller = new Controller(carController, repairShopController, frame);
        
 

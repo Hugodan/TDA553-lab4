@@ -6,6 +6,6 @@ Följande ågärder är genomförda enligt refaktoriseringsplanen från inlämni
  - FlatBedCar har separerats i klasserna FlatBed och FlatBedCar, så att FlatBed kan utnyttjas av andra typer av fordon.
 
 Ej åtgärdade brister.
- - Bilar hanterar fortfarande sin egen rörelse med hjälp av egna metorder, istället för att rapportera sin position till en modell.
+ - Bilar hanterar fortfarande sin egen rörelse med hjälp av egna metoder, istället för att rapportera sin position till en modell.
  - CarEventhandler har fortfarande en direkt referens till CarView och hämtar knappar därifrån. En mer isolerad lösning vore att CarView skickar allmänna händelser till CarEventHandler.
  - DrawPanel är fortfatande inte fristående från Controller.
