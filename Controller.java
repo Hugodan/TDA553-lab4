@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Controller {
     private final CarController carController;
@@ -52,6 +53,24 @@ public class Controller {
         carController.stopEngine();
     }
 
+    public void addCar() {
+        ArrayList<Car> cars = carController.getCars();
+        if (cars.size() < 11){
+            Car[] array = {new Volvo240(), new Saab95(), new Scania()};
+            Random random = new Random();
+            Car randomCar = array[random.nextInt(array.length)];
+            carController.addCar(randomCar);
+        }
+    }
+
+    public void removeCar() {
+        ArrayList<Car> cars = carController.getCars();
+        if (cars.size() > 0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(cars.size());
+            carController.removeCar(cars.get(randomIndex));
+        }            
+    }
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {

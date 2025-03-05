@@ -34,9 +34,11 @@ public class CarView extends JFrame{
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+    JButton addCarButton = new JButton("Adds a car");
+    JButton removeCarButton = new JButton("Removes a car");
+
 
     // Constructor
     public CarView(String framename,CarController carController){
@@ -82,6 +84,9 @@ public class CarView extends JFrame{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(addCarButton, 6);
+        controlPanel.add(removeCarButton, 7);
+
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -148,6 +153,14 @@ public class CarView extends JFrame{
 
     public JButton getStopButton() {
         return stopButton;
+    }
+
+    public JButton getAddCarButton() {
+        return addCarButton;
+    }
+
+    public JButton getRemoveCarButton() {
+        return removeCarButton;
     }
 
 }
