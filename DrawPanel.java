@@ -15,14 +15,9 @@ public class DrawPanel extends JPanel implements Observer {
         CarImage(String imagePath, Car car) {
         try {
             File file = new File(imagePath);
-            System.out.println("Absolute path: " + file.getAbsolutePath());
-            System.out.println("File exists: " + file.exists());
+           
             image = ImageIO.read(file);
-            if (image == null) {
-                System.out.println("ImageIO.read returned null for: " + imagePath);
-            } else {
-                System.out.println("Image loaded successfully: " + imagePath);
-            }
+            
             position = new Point((int) car.getPosX(), (int) car.getPosY());
             this.car = car;
         } catch (IOException e) {

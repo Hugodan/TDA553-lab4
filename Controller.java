@@ -113,7 +113,7 @@ public class Controller {
         carController.addCar(scania);
 
         volvo.setPos(0, 0);
-        saab.setPos(0, 0);
-        scania.setPos(0, 0);
+        saab.setPos(0, 100);
+        scania.setPos(0, 200);
     }
 }
