@@ -102,24 +102,27 @@ public class Controller {
 
     public static void main(String[] args) {
         CarController carController = new CarController();
-        CarRepairShopController repairShopController = new CarRepairShopController(5, 0, 400);
+        
+        RepairShop<Volvo240> volvoShop = new RepairShop<>(5, 0, 400);
+        CarRepairShopController<Volvo240> repairShopController = new CarRepairShopController<>(volvoShop);
+
+        
         CarView frame = new CarView("Car Sim 1.0");
         Controller controller = new Controller(carController, repairShopController, frame);
-       
-
         
         new CarEventHandler(controller, frame);
 
-        Volvo240 volvo = new Volvo240();
-        Saab95 saab = new Saab95();
-        Scania scania = new Scania();
+        Car volvo = CarFactory.createCar("Volvo240");
+        Car saab = CarFactory.createCar("Saab95");
+        Car scania = CarFactory.createCar("Scania");
 
-        volvo.setPos(0, 0);
-        saab.setPos(0, 100);
-        scania.setPos(0, 200);
 
         carController.addCar(volvo);
         carController.addCar(saab);
         carController.addCar(scania);
+
+        volvo.setPos(0, 0);
+        saab.setPos(0, 0);
+        scania.setPos(0, 0);
     }
 }
