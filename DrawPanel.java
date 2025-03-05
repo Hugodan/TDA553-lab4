@@ -56,6 +56,7 @@ public class DrawPanel extends JPanel implements Observer {
         if (car instanceof Scania) return "pics/Scania.jpg";
         return "/pics/default.jpg";
     }
+
     public void refreshCarImages() {
         carImages.clear();
         for (Car car : carController.getCars()) {
@@ -63,15 +64,18 @@ public class DrawPanel extends JPanel implements Observer {
             carImages.add(new CarImage(imagePath, car));
         }
     }
+
     public void removeCar(Car car) {
         carImages.removeIf(carImage -> carImage.car.equals(car));
         repaint();
     }
+
     @Override
     public void update() {
         refreshCarImages();
         repaint();
     }
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
