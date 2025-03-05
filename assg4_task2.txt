@@ -1,0 +1,11 @@
+Följande ågärder är genomförda enligt refaktoriseringsplanen från inlämning 3:
+ - CarEventhandler sköter nu all input och vidarebefodrar sedan till Controller, och CarView har har inte längre asnvar för eventhantering. 
+ - En central Contoller har skapats och hanterar tid och spelloopen. CarController ansvarar enbart för bilarnas tillstånd och deras metoder, 
+   medans CarRepairShopController är ansvarig för verkstadslogiken, vilket är skillt från kontrollen av bilarna.
+ - CarView är nu dummare och hanterar enbart UI.
+ - FlatBedCar har separerats i klasserna FlatBed och FlatBedCar, så att FlatBed kan utnyttjas av andra typer av fordon.
+
+Ej åtgärdade brister.
+ - Bilar hanterar fortfarande sin egen rörelse med hjälp av egna metorder, istället för att rapportera sin position till en modell.
+ - CarEventhandler har fortfarande en direkt referens till CarView och hämtar knappar därifrån. En mer isolerad lösning vore att CarView skickar allmänna händelser till CarEventHandler.
+ - DrawPanel är fortfatande inte fristående från Controller.
