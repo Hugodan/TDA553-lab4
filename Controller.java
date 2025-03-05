@@ -103,8 +103,7 @@ public class Controller {
     public static void main(String[] args) {
         CarController carController = new CarController();
         
-        RepairShop<Volvo240> volvoShop = new RepairShop<>(5, 0, 400);
-        CarRepairShopController repairShopController = new CarRepairShopController(volvoShop);
+        CarRepairShopController repairShopController = new CarRepairShopController(5, 0, 400);
 
         
         CarView frame = new CarView("Car Sim 1.0");
