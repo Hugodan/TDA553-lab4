@@ -13,7 +13,7 @@
         private int direction;
         private boolean heavyVehicle;
         protected boolean engineOn;
-        private EngineState engineState;
+        protected EngineState engineState;
         
         public Car(int doors, Color carColor, int power, String model){
             nrDoors = doors;

@@ -13,7 +13,7 @@ public class FlatBedCar extends Car {
     @Override
     public void startEngine(){
         if (flatBed.getAngle() == 0){
-            engineOn = true;
+            engineState.startEngine(this);
         }       
     }
 
