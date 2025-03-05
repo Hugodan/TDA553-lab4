@@ -20,6 +20,39 @@ public class Controller {
         timer.start();
     }
 
+    public void gas(int amount) {
+        carController.gas(amount);
+    }
+
+    public void brake(int amount) {
+        carController.brake(amount);
+    }
+
+    public void turboOn() {
+        carController.turboOn();
+    }
+
+    public void turboOff() {
+        carController.turboOff();
+    }
+
+    public void raiseFlatbed(float amount) {
+        carController.raiseFlatbed(amount);
+    }
+
+    public void lowerFlatbed(float amount) {
+        carController.lowerFlatbed(amount);
+    }
+
+    public void startEngine() {
+        carController.startEngine();
+    }
+
+    public void stopEngine() {
+        carController.stopEngine();
+    }
+
+
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ArrayList<Car> carsToRemove = new ArrayList<>();
@@ -71,11 +104,11 @@ public class Controller {
         CarController carController = new CarController();
         CarRepairShopController repairShopController = new CarRepairShopController(5, 0, 400);
         CarView frame = new CarView("Car Sim 1.0");
-        new Controller(carController, repairShopController, frame);
+        Controller controller = new Controller(carController, repairShopController, frame);
        
 
         
-        new CarEventHandler(carController, frame);
+        new CarEventHandler(controller, frame);
 
         Volvo240 volvo = new Volvo240();
         Saab95 saab = new Saab95();
