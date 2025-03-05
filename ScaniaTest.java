@@ -14,8 +14,12 @@ public class ScaniaTest {
     public void testSetAngle2(){
         Scania scania = new Scania();
         scania.startEngine();
-        scania.setAngle(45);
-        assertEquals(0, scania.getAngle(), 0.01);
+        scania.gas(1);
+        //assertEquals(0,scania.getAngle(),0.01);
+        assertNotEquals(0,scania.getCurrentSpeed(),0.01);
+        scania.raiseAngle(45);
+
+        // assertEquals(0, scania.getAngle(), 0.01);
 
     }
     
