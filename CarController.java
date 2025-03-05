@@ -5,6 +5,7 @@ public class CarController {
     private final ArrayList<Car> cars = new ArrayList<>();
     private final List<Observer> observers = new ArrayList<>();
 
+
     public void addCar(Car car) {
         cars.add(car);
         notifyObservers();
