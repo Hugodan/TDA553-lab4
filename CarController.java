@@ -91,7 +91,6 @@ public class CarController {
         for (Car car : cars) {
             car.move();
         }
-        System.out.println("Cars moved and observers notified.");
         notifyObservers();
     }
 }
