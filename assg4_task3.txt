@@ -1,8 +1,8 @@
 Observer:
     Redan använder:
-        - 
+        - nej 
     Bör använda
-        - Skapa en observer klass som drawpanel kan implementera.
+        - Skapa ett observer interface som drawpanel kan implementera.
         Det löser MVC problematik då controller direkt uppdaterar view
 
 Factory Method:
