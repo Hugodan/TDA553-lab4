@@ -20,10 +20,10 @@ public class CarController {
     public void addRandomCar() {
         ArrayList<Car> cars = getCars();
         if (cars.size() < 11){
-            Car[] array = {CarFactory.createCar("Volvo240") ,CarFactory.createCar("Saab95"), CarFactory.createCar("Scania")};
+            String[] array = {"Volvo240", "Saab95", "Scania"};
             Random random = new Random();
-            Car randomCar = array[random.nextInt(array.length)];
-            cars.add(randomCar);
+            String randomCarName = array[random.nextInt(array.length)];
+            cars.add(CarFactory.createCar(randomCarName));
             notifyObservers();
         }
     }
