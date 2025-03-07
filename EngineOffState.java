@@ -4,9 +4,4 @@ public class EngineOffState implements EngineState {
         car.setEngineState(new EngineOnState());
         car.engineOn = true;
     }
-    
-    @Override
-    public void stopEngine(Car car) {
-        //Engine is off already.
-    }
 }

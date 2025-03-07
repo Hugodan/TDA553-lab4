@@ -1,4 +1,4 @@
 public interface EngineState {
-    void startEngine (Car car);
-    void stopEngine(Car car);
+    default void startEngine (Car car) {}
+    default void stopEngine(Car car) {}
 }
