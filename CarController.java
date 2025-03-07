@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CarController {
     private final ArrayList<Car> cars = new ArrayList<>();
@@ -14,6 +15,27 @@ public class CarController {
     public void removeCar(Car car) {
         cars.remove(car);
         notifyObservers();
+    }
+
+    public void addRandomCar() {
+        ArrayList<Car> cars = getCars();
+        if (cars.size() < 11){
+            Car[] array = {CarFactory.createCar("Volvo240") ,CarFactory.createCar("Saab95"), CarFactory.createCar("Scania")};
+            Random random = new Random();
+            Car randomCar = array[random.nextInt(array.length)];
+            cars.add(randomCar);
+            notifyObservers();
+        }
+    }
+
+    public void removeRandomCar() {
+        ArrayList<Car> cars = getCars();
+        if (cars.size() > 0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(cars.size());
+            cars.remove(cars.get(randomIndex));
+            notifyObservers();
+        }    
     }
 
     public ArrayList<Car> getCars() {

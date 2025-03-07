@@ -53,25 +53,23 @@ public class Controller {
         carController.stopEngine();
     }
 
-    public void addCar() {
-        ArrayList<Car> cars = carController.getCars();
-        if (cars.size() < 11){
-            Car[] array = {new Volvo240(), new Saab95(), new Scania()};
-            Random random = new Random();
-            Car randomCar = array[random.nextInt(array.length)];
-            carController.addCar(randomCar);
-        }
+    public void addCar(Car car) {
+        carController.addCar(car);
     }
 
-    public void removeCar() {
-        ArrayList<Car> cars = carController.getCars();
-        if (cars.size() > 0){
-            Random random = new Random();
-            int randomIndex = random.nextInt(cars.size());
-            carController.removeCar(cars.get(randomIndex));
-        }            
+    public void removeCar(Car car) {
+        carController.removeCar(car);
     }
 
+    public void addRandomCar() {
+        carController.addRandomCar();
+    }
+
+    public void removeRandomCar() {
+        carController.removeRandomCar();
+    }
+
+    
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ArrayList<Car> carsToRemove = new ArrayList<>();

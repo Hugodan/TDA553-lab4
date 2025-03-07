@@ -17,7 +17,7 @@ public class CarEventHandler {
         carUI.getLowerBedButton().addActionListener(e -> controller.lowerFlatbed(0));
         carUI.getStartButton().addActionListener(e -> controller.startEngine());
         carUI.getStopButton().addActionListener(e -> controller.stopEngine());
-        carUI.getAddCarButton().addActionListener(e -> controller.addCar());
-        carUI.getRemoveCarButton().addActionListener(e -> controller.removeCar());
+        carUI.getAddCarButton().addActionListener(e -> controller.addRandomCar());
+        carUI.getRemoveCarButton().addActionListener(e -> controller.removeRandomCar());
     }
 }
